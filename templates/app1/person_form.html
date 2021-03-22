@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load l10n %}
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+
+  {% block content %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row mt-2">
+        <div class="col-6">
+          {{ form.sw_name|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.sw_lic_id|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_mnt_id|as_crispy_field }}
+        </div> 
+      </div>
+      
+      <div class="row mt-2">
+        <div class="col-3">
+          {{ form.sw_version|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.sw_quantity|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_lic_price|as_crispy_field }}
+          {% comment %} {{ form.sw_lic_price|intcomma }} {% endcomment %}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_mnt_price|as_crispy_field }}
+        </div> 
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-3">
+          {{ form.sw_lic_date|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.sw_mnt_init_date|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_mnt_update_date|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_sup_date|as_crispy_field }}
+        </div> 
+
+      <div class="row mt-2">
+        <div class="col-3">
+          {{ form.sw_banker|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-3">
+          {{ form.sw_vender_comp|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_vender_rep|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_vender_mail|as_crispy_field }}
+        </div> 
+        <div class="col-3">
+          {{ form.sw_vender_tel|as_crispy_field }}
+        </div> 
+      </div>
+
+
+
+      
+
+      <div class="row mt-2">
+        <div class="col-6">
+          {% comment %} {{ form.name2|as_crispy_field }} {% endcomment %}
+          {% comment %} <input type="text" name="name2" id="name2" /> {% endcomment %}
+
+          <label for="name">開発元</label>
+
+        </div>
+
+      <div class="row mt-2">
+      {% comment %} <div class="row mt-2" style="height:50px" > {% endcomment %}
+        <div class="col-6">
+         {% comment %} <div class="col-md-6 col-lg-6 B h-100">   {% endcomment %}
+          <input list="browsers" id="person_browser" name="person_browser" placeholder="一覧からベンダーを選択して下さい" />
+          <datalist id="browsers">
+            <option value="日本ＩＢＭ">
+            <option value="マイクロソフト">
+            <option value="Internet Explorer">
+            <option value="Opera">
+            <option value="Safari">
+            <option value="Microsoft Edge">
+          </datalist>
+        </div>
+      </div>
+      
+      <div class="row mt-2">
+        <div class="col-6">
+          {{ form.sw_installed|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.sw_other|as_crispy_field }}
+        </div>
+      </div>
+
+      <div class="row mt-2">
+          {{ form.sw_not_use|as_crispy_field }}
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-3">
+          <button type="submit" class="btn btn-success">保存</button>
+        </div>
+      </div>
+      {% comment %} <button type="submit" class="btn btn-success">保存</button> {% endcomment %}
+
+    </form>
+  {% endblock %}
+
+</div>

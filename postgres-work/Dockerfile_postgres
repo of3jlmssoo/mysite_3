@@ -1,0 +1,8 @@
+FROM postgres:latest
+COPY 40-init.sh /docker-entrypoint-initdb.d/
+USER postgres
+
+RUN echo "host all  all    0.0.0.0/0  trust" >>/var/lib/postgresql/data/pg_hba.conf
+
+
+

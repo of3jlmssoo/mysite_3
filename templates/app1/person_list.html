@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>
+    <a href="{% url 'app1:person_add' %}" class="btn btn-primary">追加</a>
+  </p>
+
+  {% comment %} <form action="{% url 'delete' person.pk %}" method="post">  {% endcomment %}
+  {% comment %} <form action="{% url 'polls:vote' question.id %}" method="post"> {% endcomment %}
+
+  <form action="" method="POST">
+  {% comment %} <form action="{% url 'deletesomeall' person.pk %}" method="POST"> {% endcomment %}
+  {% comment %} <form action="deletesomeall/person.pk" method="POST"> {% endcomment %}
+
+  {% comment %} <form action="" method="GET">{% csrf_token %} {% endcomment %}
+  {% comment %} <form action="{% url 'deletesomeall' person.pk  %}"  method="POST">{% csrf_token %} {% endcomment %}
+  {% comment %} <form action="{% url 'deletesomeall' method="GET" %}" >  {% endcomment %}
+  {% comment %} <button typeAdd a person="submit">削除</button> {% endcomment %}
+
+    {% csrf_token %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          {% comment %} <th>Name</th>
+          <th>Email</th>
+          <th>Job Title</th> {% endcomment %}
+          <th>ソフトウェア名称</th>
+          <th>保守金額</th>
+          <th>保守契約更新日付</th>
+          <th>削除</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for person in people %}
+          <tr>
+            {% comment %} <td><input type="checkbox" name="delete_person" value="{{ person.pk }}"></td> {% endcomment %}
+            <td><a href="{% url 'app1:person_edit' person.pk %}">{{ person.sw_name }}</a></td>
+            {% comment %} <td>{{ person.name }}</td> {% endcomment %}
+            <td>{{ person.sw_mnt_price }}</td>
+            <td>{{ person.sw_mnt_update_date }}</td>
+            {% comment %} <th>削除</th> {% endcomment %}
+            <th><a href="{% url 'app1:delete' person.pk %}">削除</a></th>
+            <td><input type="checkbox" name="deletemultiple" value="{{ person.pk }}"></td>
+          </tr>
+        {% empty %}
+          <tr class="table-active">
+            <td colspan="3">No data</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button type="submit">削除</button>
+  </form>
+  {% comment %} <p>
+    <a href="{% url 'person_edit' pk=3 %}" class="btn btn-primary">Add a person</a>
+  </p> {% endcomment %}
+  <p>
+    <a href="{% url 'app1:person_add' %}" class="btn btn-primary">追加</a>
+  </p>
+{% endblock %}

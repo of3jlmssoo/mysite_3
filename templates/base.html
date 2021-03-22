@@ -1,0 +1,102 @@
+<!doctype html>"
+{% load crispy_forms_tags %}
+<html>
+<head>
+	<style type="text/css">
+		.sidenav {
+			height:100%;
+			width:160px;
+			position: fixed;
+			z-index:1;
+			top:0;
+			left:0;
+			{% comment %} background-color:#111; {% endcomment %}
+			background-color:green;
+			overflow-x: :hidden;
+			padding-top:20px;
+		}
+ 
+		.sidenav a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			font-size:25px;
+			{% comment %} color: #818181; {% endcomment %}
+			color: #000000;
+			display:block;
+		}
+ 
+		mysite.sidenav a:hover{
+			color:#f1f1f1;
+		}	
+ 
+		.main{
+			margin-left:160px;
+			padding: 0px 10px;
+		}
+ 
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	
+	{% comment %} <title>{% block title %}Tim's Site{% endblock %}</title> {% endcomment %}
+</head>
+
+{% comment %} <header class="justify-content-end d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"> {% endcomment %}
+<header class="justify-content-end d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  {% comment %} <p class="h5 my-0 me-md-auto fw-normal">Company name</p> {% endcomment %}
+  {% comment %} <nav class="my-2 my-md-0 me-md-3"> {% endcomment %}
+    <nav class="my-2 my-md-0 me-md-3">
+        {% comment %} <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">Pricing</a> {% endcomment %}
+
+		{% comment %} <li class="nav-item dropdown"> {% endcomment %}
+		<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Export/Import</a>
+		<ul class="dropdown-menu" aria-labelledby="dropdown01">
+			{% comment %} <li><a class="dropdown-item" href="#">Export</a></li> {% endcomment %}
+			<li><a class="dropdown-item" href="{% url 'app1:export' %}">Export</a></li>
+			{% comment %} <li><a class="dropdown-item" href="#">Import</a></li> {% endcomment %}
+			<li><a class="dropdown-item" href="{% url 'app1:simple_upload' %}">Import</a></li>
+		</ul>
+        {% comment %} </li> {% endcomment %}
+
+
+
+
+    </nav>
+  {% comment %} <a class="btn btn-outline-primary" href="#">Sign up</a> {% endcomment %}
+</header>
+ 
+<body>
+	<div class="sidenav">
+		<a href="/">ホーム</a>
+		{% comment %} <a href="/create">Create</a> {% endcomment %}
+		{% comment %} <a href="/2">View</a> {% endcomment %}
+		<a href="{% url 'app1:person_add' %}">新規</a>
+		<a href="{% url 'app1:person_list' %}">リスト</a>
+		<a href="{% url 'app1:search_list' %}">サーチ</a>
+		<a href="{% url 'logout' %}">
+            <p class="fw-lighter">Logoff</p>
+        </a>
+	</div>
+
+	<div id="content", name="content", class="main">
+		<div class="row justify-content-left">
+			<div class="col-8">
+				<h1 class="mt-2">Rライセンス管理(mysite_3)</h1>
+				<hr class="mt-0 mb-4">
+                {% block content %}
+                {% endblock %}
+
+			</vid>
+		</div>
+	</div>
+
+	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

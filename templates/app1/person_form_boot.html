@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+
+  {% block content %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-6">
+          {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.email|as_crispy_field }}
+        </div>
+      </div>
+      {{ form.job_title|as_crispy_field }}
+      {{ form.bio|as_crispy_field }}<br>
+      <div class="row">
+        <div class="col-3">
+          {{ form.yourchoice1|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.yourchoice2|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.person_initial_date|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.person_update_date|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ form.yourmultichoice|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {% comment %} {{ form.name2|as_crispy_field }} {% endcomment %}
+          {% comment %} <input type="text" name="name2" id="name2" /> {% endcomment %}
+
+          <label for="name">ブラウザー選択</label>
+          <input list="browsers" id="name2" name="name2" placeholder="一覧からブラウザーを選択して下さい" />
+          <datalist id="browsers">
+            <option value="Chrome">
+            <option value="Firefox">
+            <option value="Internet Explorer">
+            <option value="Opera">
+            <option value="Safari">
+            <option value="Microsoft Edge">
+          </datalist>
+
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">保存</button>
+      {% comment %} <button type="submit" class="btn btn-success">Save person</button> {% endcomment %}
+    </form>
+  {% endblock %}
+
+</div>

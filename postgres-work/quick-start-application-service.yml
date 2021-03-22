@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: quick-start-application
+spec:
+  selector:
+    app: quick-start-application
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30002
+  type: NodePort

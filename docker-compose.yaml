@@ -1,0 +1,79 @@
+version: '3.7'
+
+# volumes:
+#   pgdata:
+#     driver_opts:
+#       type: none
+#       device: /home/hiroshisakuma/projects/minikube/basic/mysite_3/dbdata
+#       o: bind
+
+services:
+  nginx:
+    # image: mycontainer-nginx:v1.0.0
+    image: nginx:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile_nginx
+    container_name: mycontainer-nginx
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./nginx/conf:/etc/nginx/conf.d
+    #   - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    #   - ./src/static:/static
+    #   - ./nginx/log:/var/log/nginx
+    depends_on:
+      - web
+    networks:
+      - my-network
+
+  web:
+    # image: mycontainer-uwsgi:v1.0.0
+    # image: mycontainer-uwsgi:v1.0.0
+    # restart: always
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    ports: 
+      - "8001:8001"
+    container_name: mycontainer-uwsgi
+    command: uwsgi --ini /mycode/mysite_3/uwsgi.ini
+    # volumes:
+    #   - ./src:/code
+    expose:
+      - "8001"
+    # depends_on:
+    #   - db
+    networks: 
+      - my-network
+
+  # db:
+  #   # image: postgres
+  #   image: postgres:latest
+  #   build: 
+  #     context: .
+  #     dockerfile: ./Dockerfile_postgres
+  #   restart: always
+  #   container_name: mycontainer-postgres
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     # PPOSTGRES_DB: "myapp"
+  #     # POSTGRES_USER: "admin"
+  #     # POSTGRES_PASSWORD: "adminpassword"
+  #     POSTGRES_USER: ${POSTGRES_USER:-user}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+  #     POSTGRES_DB: ${POSTGRES_DB:-db}
+  #     POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+  #   volumes:
+  #     # - pgdata:/var/lib/postgresql/data
+  #     # - /home/hiroshisakuma/projects/minikube/basic/mysite_3/dbdata:/var/lib/postgresql/data
+  #     - /home/hiroshisakuma/projects/minikube/basic/mysite_3/dbdata:/var/lib/postgresql
+  #   hostname: postgres
+  #   networks:
+  #     - my-network
+
+networks:
+  my-network:
+    driver: bridge
+  

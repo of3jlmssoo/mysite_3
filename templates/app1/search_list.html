@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% comment %}
+{% block content %}
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+
+  <div class="row mt-3">
+    <h5>該当レコード</h5>
+  </div>
+
+
+
+  {% for person in filter.qs %}
+    <li> <td><a href="{% url 'app1:person_edit' person.pk %}">{{ person.sw_name }} - {{person.sw_mnt_update_date}} - {{ person.sw_mnt_price }} </a></td> </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
+{% endcomment %}
+
+{% load widget_tweaks %}
+
+<div id="page-content-wrapper">
+
+  {% block content %}
+    <form method="get">
+      {% csrf_token %}
+        <h4 style="margin-top: 0">Filters</h4>
+        
+        {% comment %}
+        <div>
+          <form>
+            {{ filter.form.as_p }}
+          </form>
+        </dvi>
+        {% endcomment %}
+        
+
+        <div class="row mt-2">
+          <div class="col-2">
+            <label>ソフトウェア名称:</label>
+          </div>
+          <div class="col-3">
+            {{ filter.form.sw_name__contains }}
+          </div>
+        </dvi>
+
+        <div class="row mt-2">
+          <div class="col-2">
+            <label>保守契約更新日:</label>
+          </div>
+          <div class="col-3">
+            {{ filter.form.sw_mnt_update_date__range }}
+          </div>
+        </dvi>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <label>検索例:2021-01-01,2021-12-01</label>
+          </div>
+        </dvi>
+
+        
+        {% comment %}
+        <div class="row"> 
+          <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.sw_name.label_tag }}
+            {{ "-----" }}
+            <h5>h5h5h5</h5>
+            {% render_field filter.form.sw_name class="form-control" %}
+          </div>
+        </div>
+        {% endcomment %}
+        
+      <div class="row mt-2">
+        <div class="col-3">
+          <button type="submit"P class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Search
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ソフトウェア名称</th>
+          <th>保守契約更新日</th>
+          <th>保守金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in filter.qs %}
+          <tr>
+            {% comment %} <td>{{ user.sw_name }}</td> {% endcomment %}
+            <td><a href="{% url 'app1:person_edit' user.pk %}">{{ user.sw_name }}</a></td>
+            <td>{{ user.sw_mnt_update_date }}</td>
+            <td>{{ user.sw_mnt_price }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No data</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endblock %}
+</div>jj
