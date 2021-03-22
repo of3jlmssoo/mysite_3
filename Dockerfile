@@ -8,7 +8,8 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /mycode/
 COPY . /mycode/
-COPY nginx.conf /etc/nginx/
+#COPY nginx.conf /etc/nginx/
+#COPY nginx/conf/mysite_nginx.conf /etc/nginx/
 COPY uwsgi_params /etc/nginx/
 COPY uwsgi.ini  /mycode/mysite_3/
 # CMD ["uwsgi", "--ini", "/code/src/mysite/uwsgi.ini"]

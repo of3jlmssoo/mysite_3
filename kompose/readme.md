@@ -40,12 +40,25 @@ minikube dashboard
 
 Alt+Ctrl+Shift+R
 kubectl delete -f nginx-deployment.yaml,nginx_loadbalancer_service.yaml,web-deployment.yaml,web-service.yaml,my-network-networkpolicy.yaml
+kubectl apply -f nginx-deployment.yaml,nginx_loadbalancer_service.yaml,web-deployment.yaml,web-service.yaml,my-network-networkpolicy.yaml
+kubectl apply -f nginx-deployment.yaml,nginx_nordport_service.yaml,web-deployment.yaml,web-service.yaml,my-network-networkpolicy.yaml
 
 
+kubectl expose deployment nginx-deployment --type=LoadBalancer
 kubectl apply -f psgr-config.yml,psgr-pv-pvc.yml,psgr-service.yml,psgr-stateful.yml
 docker tag mysite_3_web:latest mycontainer-uwsgi:v1.0.0
+docker tag nginx:latest mycontainer-nginx:v1.0.0
+
+docker tag mycontainer-uwsgi:v1.0.0 of3jlmssoo/mycontainer-uwsgi:v1.0.0
+docker tag mycontainer-nginx:v1.0.0 of3jlmssoo/mycontainer-nginx:v1.0.0
+docker push of3jlmssoo/mycontainer-uwsgi:v1.0.0
+docker push of3jlmssoo/mycontainer-nginx:v1.0.0
+
+
+kubectl delete -f nginx-deployment.yaml
 kubectl delete -f web-deployment.yaml
 kubectl apply -f web-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
 kubectl exec -it    -- cat config/settings.py
 kubectl exec -it    -- cat mysite_3/uwsgi.log
 
