@@ -132,32 +132,32 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#         # 'OPTIONS': {
-#         #     'isolation_level': 'REPEATABLE READ',
-#         # }
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myapp',
-        'USER': 'admin',
-        'PASSWORD': 'adminpassword',
-        # 'HOST': 'postgres-statefulset',
-        # 'HOST': os.environ['POSTGRES_SERVICE_SERVICE_HOST'],
-        'HOST': 'postgres-service',
-        'PORT': '32467',
-         'OPTIONS': {
-            # 'isolation_level': 'READ COMMITTED',
-            'isolation_level': 'repeatable read',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'OPTIONS': {
+        #     'isolation_level': 'REPEATABLE READ',
+        # }
     }
-}   
+}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         # 'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myapp',
+#         'USER': 'admin',
+#         'PASSWORD': 'adminpassword',
+#         # 'HOST': 'postgres-statefulset',
+#         # 'HOST': os.environ['POSTGRES_SERVICE_SERVICE_HOST'],
+#         'HOST': 'postgres',
+#         'PORT': '32467',
+#          'OPTIONS': {
+#             # 'isolation_level': 'READ COMMITTED',
+#             'isolation_level': 'repeatable read',
+#         }
+#     }
+# }   
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
