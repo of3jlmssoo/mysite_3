@@ -12,13 +12,16 @@ kubectl apply -f web-dep.yaml
 
 kubectl create configmap confnginx --from-file=./mysite_nginx.conf
 
+kubectl apply -f nginx-deployment.yaml  
+kubectl apply -f nginx_loadbalancer_service.yaml
+
+worked with sqlite
+
 ####
 kubectl describe configmaps  confnginx
 kubectl apply -f back-dep.yaml,back-svc.yaml
     backendを先に作る(helloが必要)
 
-kubectl apply -f front-dep2.yaml
-kubectl apply -f front-svc.yaml
 
 $ kubectl get service frontend
     NAME       TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE

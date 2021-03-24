@@ -17,8 +17,9 @@ spec:
         - name: nginx
           image: nginx:1.19.8
           lifecycle:
-            exec:
-              command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
+            preStop:
+              exec:
+                command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
           ports:
             - containerPort: 8000
           volumeMounts:
