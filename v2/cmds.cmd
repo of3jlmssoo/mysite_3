@@ -1,6 +1,3 @@
-git clone https://github.com/of3jlmssoo/mysite_3.git
-read -p "Press [Enter] key to resume." 
-clear
 cd mysite_3
 read -p "Press [Enter] key to resume." 
 clear
