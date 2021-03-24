@@ -1,21 +1,3 @@
-docker-compose -f ./docker-compose.yml build
-read -p "Press [Enter] key to resume." 
-clear
-docker images | grep site
-read -p "Press [Enter] key to resume." 
-clear
-docker login
-read -p "Press [Enter] key to resume." 
-clear
-docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
-read -p "Press [Enter] key to resume." 
-clear
-docker push of3jlmssoo/cloudsite_3_web:v1.0.0
-read -p "Press [Enter] key to resume." 
-clear
-cd v2
-read -p "Press [Enter] key to resume." 
-clear
 kubectl apply -f web-dep.yaml,web-svc.yaml
 read -p "Press [Enter] key to resume." 
 clear
