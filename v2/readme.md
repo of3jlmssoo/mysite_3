@@ -54,7 +54,9 @@ worked with sqlite
 
 
 git clone https://github.com/of3jlmssoo/mysite_3.git
-cd mysite_3
+cd mysite_3/v2
+kubectl apply -f psgr-config.yml,psgr-pv-pvc.yml,psgr-service.yml,psgr-stateful.yml
+cd ..
 docker-compose -f ./docker-compose.yml build
 docker images | grep site
 docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
@@ -75,6 +77,14 @@ python manage.py createsuperuser
 
 2021-07-01,2021-12-31
 2021-01-01,2021-06-30
+
+
+
+
+
+
+
+
 
 
 postgres-service.default.svc.cluster.local
