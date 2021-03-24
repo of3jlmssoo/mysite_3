@@ -1,7 +1,7 @@
-cd mysite_3
+docker-compose -f ./docker-compose.yml build
 read -p "Press [Enter] key to resume." 
 clear
-docker-compose -f ./docker-compose.yml build
+kubectl get deploy
 read -p "Press [Enter] key to resume." 
 clear
 docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.
@@ -11,9 +11,6 @@ docker login
 read -p "Press [Enter] key to resume." 
 clear
 docker images
-read -p "Press [Enter] key to resume." 
-clear
-docker images | grep site
 read -p "Press [Enter] key to resume." 
 clear
 docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
