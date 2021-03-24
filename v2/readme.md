@@ -30,8 +30,12 @@ cd mysite_3/v2
 vi cmds.cmd
 chmod +x cmds.cmd
 
-
-
+docker-compose -f ./docker-compose.yml build
+docker images | grep site
+docker login
+docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
+docker push of3jlmssoo/cloudsite_3_web:v1.0.0
+cd v2
 
 
 
