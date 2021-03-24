@@ -7,7 +7,15 @@ myapp=# \q
 kubectl delete pod dnsutils
 kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
 
+
+docker-compose -f ./docker-compose.yml build --no-cache
+docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
+docker login
+docker push of3jlmssoo/cloudsite_3_web:v1.0.0
+
+
 kubectl apply -f web-dep.yaml
+kubectl apply -f web-svc.yaml
 
 
 kubectl create configmap confnginx --from-file=./mysite_nginx.conf
@@ -16,6 +24,42 @@ kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx_loadbalancer_service.yaml
 
 worked with sqlite
+
+git clone https://github.com/of3jlmssoo/mysite_3.git
+cd mysite_3/v2
+vi cmds.cmd
+chmod +x cmds.cmd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ####
 kubectl describe configmaps  confnginx
