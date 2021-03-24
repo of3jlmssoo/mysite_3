@@ -9,7 +9,19 @@ kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
 
 
 docker-compose -f ./docker-compose.yml build --no-cache
+
+
+!!!cloud site!!!
 docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
+docker push of3jlmssoo/cloudsite_3_web:v1.0.0
+
+!!!local site!!!
+docker tag mysite_3_web:latest of3jlmssoo/mysite_3_web:v1.0.0
+docker push of3jlmssoo/mysite_3_web:v1.0.0
+
+kubectl delete deploy web
+kubectl apply -f v2/web-dep.yaml
+
 docker login
 docker push of3jlmssoo/cloudsite_3_web:v1.0.0
 
@@ -25,17 +37,55 @@ kubectl apply -f nginx_loadbalancer_service.yaml
 
 worked with sqlite
 
-git clone https://github.com/of3jlmssoo/mysite_3.git
-cd mysite_3/v2
-vi cmds.cmd
-chmod +x cmds.cmd
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git clone https://github.com/of3jlmssoo/mysite_3.git
+cd mysite_3
 docker-compose -f ./docker-compose.yml build
 docker images | grep site
-docker login
 docker tag mysite_3_web:latest of3jlmssoo/cloudsite_3_web:v1.0.0
+docker login
 docker push of3jlmssoo/cloudsite_3_web:v1.0.0
 cd v2
+kubectl apply -f web-dep.yaml,web-svc.yaml
+kubectl get all
+kubectl create configmap confnginx --from-file=./mysite_nginx.conf
+kubectl apply -f nginx-deployment.yaml  
+kubectl apply -f nginx_loadbalancer_service.yaml
+kubectl get all
+
+kubectl exec -it PODNAME!!!!!! -- /bin/bash
+    pod name
+python manage.py migrate
+python manage.py createsuperuser
+
+2021-07-01,2021-12-31
+2021-01-01,2021-06-30
+
+
+postgres-service.default.svc.cluster.local
+10.107.177.226
+
+kubectl delete deploy web
+docker-compose -f docker-compose.yml build 
+docker tag mysite_3_web:latest of3jlmssoo/mysite_3_web:v1.0.0
+docker push of3jlmssoo/mysite_3_web:v1.0.0
+kubectl apply -f v2/web-dep.yaml
+
 
 
 
