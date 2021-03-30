@@ -153,7 +153,8 @@ DATABASES = {
         # 'HOST': os.getenv['$POSTGRES_SERVICE_SERVICE_HOST'],
         # 'HOST': 'postgres',
         # 'HOST': '172.17.0.7',
-        'HOST': 'postgres-service',
+        # 'HOST': 'postgres-service',
+        'HOST': 'postgresql',
         # 'PORT': '32467',
         'PORT': '5432',
          'OPTIONS': {
