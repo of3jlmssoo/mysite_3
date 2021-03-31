@@ -13,10 +13,13 @@ Use the 'oc' command line interface:
 
 eval $(crc oc-env)
 oc login -u developer https://api.crc.testing:6443
+
+
 oc new-project myproject
 
 
 CREATE PERSISTENT VOLUME
+oc create -f psgr-pv-4-postgres.yaml
   spec:
     capacity:
       storage: 20Gi
@@ -43,18 +46,20 @@ oc create -f postgresql-persistent.yaml
 oc rsh pod/postgresql-1-qlzsg /bin/bash
 psql -U admin myapp
 
-cd ..
-podman-compose -f docker-compose.yml build
-podman login -u kubeadmin -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing --tls-verify=false
+  代わりにdocker.hubを利用する
+  cd ..
+  podman-compose -f docker-compose.yml build
+  podman login -u kubeadmin -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing --tls-verify=false
 
-podman tag localhost/mysite_3_web:latest default-route-openshift-image-registry.apps-crc.testing/myproject/mysite_3_web
+  podman tag localhost/mysite_3_web:latest default-route-openshift-image-registry.apps-crc.testing/myproject/mysite_3_web
 
-podman push  --tls-verify=false default-route-openshift-image-registry.apps-crc.testing/myproject/mysite_3_web:latest 
+  podman push  --tls-verify=false default-route-openshift-image-registry.apps-crc.testing/myproject/mysite_3_web:latest 
 
-oc get is
-oc set image-lookup mysite_3_web
-cd v3
-oc create -f web-dep.yaml,web-svc.yaml
+  oc get is
+  oc set image-lookup mysite_3_web
+
+  cd v3
+  oc create -f web-dep.yaml,web-svc.yaml
 
 oc rsh PODNAME /bin/bash
   python manage.py makemigrations
@@ -80,6 +85,18 @@ oc create -f n-svc.yml,n-rot.yml
 
 oc get route nginx
 
+
+
+podman images
+podman push localhost/mysite_3_web docker-daemon:localhost/mysite_3_web:latest
+docker images
+docker tag localhost/mysite_3_web:latest of3jlmssoo/mysite_3_web:latest
+docker images
+docker login
+docker push of3jlmssoo/mysite_3_web:latest
+
+
+sudo yum -y install podman
 
 
 

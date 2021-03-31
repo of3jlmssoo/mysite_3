@@ -2,9 +2,6 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: example
-  labels:
-    app: postgres
-    type: local
 spec:
   capacity:
     storage: 20Gi
