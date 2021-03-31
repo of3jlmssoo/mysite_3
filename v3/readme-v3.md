@@ -15,10 +15,15 @@ eval $(crc oc-env)
 oc login -u developer https://api.crc.testing:6443
 
 
+alias c="clear"
+set -o vi
+oc get all
+
+
 oc new-project myproject
 
 
-CREATE PERSISTENT VOLUME
+CREATE PERSISTENT VOLUME (IBM Cloudでは実施しない。自動作成を使う)
 oc create -f psgr-pv-4-postgres.yaml
   spec:
     capacity:
@@ -45,6 +50,9 @@ oc whoami
 oc create -f postgresql-persistent.yaml
 oc rsh pod/postgresql-1-qlzsg /bin/bash
 psql -U admin myapp
+\l
+\q
+exit
 
   代わりにdocker.hubを利用する
   cd ..
@@ -59,19 +67,21 @@ psql -U admin myapp
   oc set image-lookup mysite_3_web
 
   cd v3
-  oc create -f web-dep.yaml,web-svc.yaml
+
+edit image  
+oc create -f web-dep.yaml,web-svc.yaml
 
 oc rsh PODNAME /bin/bash
   python manage.py makemigrations
   python manage.py sqlmigrate app1 0001
   python manage.py migrate 
   python manage.py createsuperuser
-
+exit
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/use_cases/nginx_hello_world.html
 
 cd crc
-oc login -u developer https://api.crc.testing:6443
+  oc login -u developer https://api.crc.testing:6443
 oc create -f n-bc.yml
 oc create imagestream nginx
 oc start-build nginx --from-dir=./ --follow
@@ -80,6 +90,7 @@ oc get imagestream nginx
 oc set image-lookup nginx
 
 oc create -f n-dep.yml
+oc get pods --watch
 
 oc create -f n-svc.yml,n-rot.yml
 
