@@ -16,14 +16,26 @@ oc login -u developer https://api.crc.testing:6443
 oc new-project myproject
 
 
+CREATE PERSISTENT VOLUME
+  spec:
+    capacity:
+      storage: 20Gi
+    flexVolume:
+    accessModes:
+      - ReadWriteOnce
+    claimRef:
+      kind: PersistentVoumeClaim
+      namespace: myproject
+      name: postgresql
+
 oc get templates -n openshift -o custom-columns=NAME:.metadata.name|grep -i ^postgres
 oc process -o yaml openshift//postgresql-persistent > ./postgresql-persistent.yaml
     edit kind: secret (DB name, ID/password)
     edit kind: PersistentVolumeClaim
         metadata:
             labels:
-            template: postgresql-persistent-template
-            app: postgres
+              template: postgresql-persistent-template
+              app: postgres
             name: postgresql
 
 oc whoami
