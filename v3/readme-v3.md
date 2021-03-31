@@ -15,14 +15,15 @@ eval $(crc oc-env)
 oc login -u developer https://api.crc.testing:6443
 
 
-alias c="clear"
-set -o vi
-
+alias c="clear"; set -o vi
 
 oc new-project myproject
 oc whoami
 oc get all
 
+git clone https://github.com/of3jlmssoo/mysite_3.git
+
+CHANGE PAGE!!!
 
 CREATE PERSISTENT VOLUME (IBM Cloudでは実施しない。自動作成を使う)
 oc create -f psgr-pv-4-postgres.yaml
@@ -71,6 +72,7 @@ exit
 
   cd v3
 
+CHANGE PAGE!!!
 edit image  
 vi web-dep.yaml
 of3jlmssoo
@@ -86,6 +88,7 @@ exit
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/use_cases/nginx_hello_world.html
 
+CHANGE PAGE!!!
 cd crc
   oc login -u developer https://api.crc.testing:6443
 oc create -f n-bc.yml
@@ -102,6 +105,7 @@ oc create -f n-svc.yml,n-rot.yml
 
 oc get route nginx
 
+CHANGE PAGE!!!
 
 
 podman images
