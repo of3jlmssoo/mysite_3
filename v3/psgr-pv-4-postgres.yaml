@@ -7,18 +7,15 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 2Gi
+    storage: 20Gi
   flexVolume:
     driver: ibm/ibmc-block
     fsType: ext4
-
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
-  
   claimRef:
     kind: PersistentVolumeClaim
     namespace: myproject
     name: postgresql
+  storageClassName: ibmc-block-gold
   volumeMode: Filesystem  
-  storageClassName: standard
