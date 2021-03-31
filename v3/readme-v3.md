@@ -17,10 +17,11 @@ oc login -u developer https://api.crc.testing:6443
 
 alias c="clear"
 set -o vi
-oc get all
 
 
 oc new-project myproject
+oc whoami
+oc get all
 
 
 CREATE PERSISTENT VOLUME (IBM Cloudでは実施しない。自動作成を使う)
@@ -37,7 +38,9 @@ oc create -f psgr-pv-4-postgres.yaml
       name: postgresql
 
 oc get templates -n openshift -o custom-columns=NAME:.metadata.name|grep -i ^postgres
-oc process -o yaml openshift//postgresql-persistent > ./postgresql-persistent.yaml
+(crc) oc process -o yaml openshift//postgresql-persistent > ./postgresql-persistent.yaml
+(lab) oc process -o yaml openshift//postgresql-persistent > ./postgresql-persistent2.yaml
+(lab) vi ./postgresql-persistent2.yaml
     edit kind: secret (DB name, ID/password)
     edit kind: PersistentVolumeClaim
         metadata:
@@ -45,8 +48,8 @@ oc process -o yaml openshift//postgresql-persistent > ./postgresql-persistent.ya
               template: postgresql-persistent-template
               app: postgres
             name: postgresql
+(lab) diff ./postgresql-persistent.yaml ./postgresql-persistent2.yaml
 
-oc whoami
 oc create -f postgresql-persistent.yaml
 oc rsh pod/postgresql-1-qlzsg /bin/bash
 psql -U admin myapp
@@ -69,6 +72,9 @@ exit
   cd v3
 
 edit image  
+vi web-dep.yaml
+of3jlmssoo
+
 oc create -f web-dep.yaml,web-svc.yaml
 
 oc rsh PODNAME /bin/bash
