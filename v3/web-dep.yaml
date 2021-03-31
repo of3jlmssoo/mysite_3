@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: mysite_3_web:v1.0.0
+          image: mysite_3_web:latest
           imagePullPolicy: IfNotPresent 
           ports:
             - containerPort: 8001
