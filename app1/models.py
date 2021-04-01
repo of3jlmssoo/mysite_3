@@ -45,7 +45,7 @@ class Person(models.Model):
     sw_mnt_update_date = models.DateField(default=timezone.now,verbose_name="保守契約更新日付")
     # sw_sup_date = models.datefield(default=timezone.now,verbose_name="保守期限",blank=True)
     sw_sup_date = models.DateField(verbose_name="保守期限",blank=True, null=True)
-    sw_banker = models.CharField(max_length=20,verbose_name="銀行担者当者名", blank=False, null=True)
+    sw_in_charge = models.CharField(max_length=20,verbose_name="担者当名", blank=False, null=True)
     sw_vender_comp = models.CharField(max_length=20,verbose_name="ベンダー名",blank=False, null=True)
     sw_vender_rep = models.CharField(max_length=20,verbose_name="ベンダー担当者名",blank=False, null=True)
     sw_vender_mail = models.EmailField(blank=True,verbose_name="eメール")
