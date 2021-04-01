@@ -56,7 +56,7 @@ class PersonCreateView(CreateView):
     fields = ('sw_name', 'sw_lic_id', 'sw_mnt_id', 'sw_not_use', 'sw_version', 'sw_quantity',
                 'sw_dev_comp', 'sw_lic_price', 'sw_mnt_price', 
                 'sw_lic_date', 'sw_mnt_init_date', 'sw_mnt_update_date', 'sw_sup_date', 
-                'sw_banker', 
+                'sw_in_charge', 
                 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mail', 'sw_vender_tel',
                 'sw_installed','sw_other')
     success_url = reverse_lazy('app1:person_list')
@@ -125,7 +125,7 @@ def export(request):
 #         # person_resource = PersonResource()
 #         # dataset = Dataset(headers = ['id','sw_name', 'sw_lic_id', 'sw_mnt_id', 'sw_not_use', 'sw_version', 'sw_quantity',
 #         #          'sw_dev_comp', 'sw_lic_price', 'sw_mnt_price', 'sw_lic_date', 'sw_mnt_init_date', 'sw_mnt_update_date', 
-#         #          'sw_sup_date', 'sw_banker', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mail',
+#         #          'sw_sup_date', 'sw_in_charge', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mail',
 #         #          'sw_vender_tel','sw_installed','sw_other', 'version'])
 #         # new_persons = request.FILES['myfile']
 
@@ -148,17 +148,17 @@ def export(request):
 #             # mydata = tablib.Dataset(headers=[ 'id', 'sw_name', 'sw_lic_id', 'sw_mnt_id', 'sw_not_use', 
 #             #                 'sw_version', 'sw_quantity', 'sw_dev_comp', 'sw_lic_price', 'sw_mnt_price', 
 #             #                 'sw_lic_date', 'sw_mnt_init_date', 'sw_mnt_update_date', 'sw_sup_date', 
-#             #                 'sw_banker', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
+#             #                 'sw_in_charge', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
 #             #                 'sw_installed', 'sw_other', 'version', ]).load(open(new_persons ).read())
 #         # mydata = tablib.Dataset(headers=[ 'id', 'sw_name', 'sw_lic_id', 'sw_mnt_id', 'sw_not_use', 
 #         #                 'sw_version', 'sw_quantity', 'sw_dev_comp', 'sw_lic_price', 'sw_mnt_price', 
 #         #                 'sw_lic_date', 'sw_mnt_init_date', 'sw_mnt_update_date', 'sw_sup_date', 
-#         #                 'sw_banker', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
+#         #                 'sw_in_charge', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
 #         #                 'sw_installed', 'sw_other', 'version', ]).load(new_persons.read())
 #         mydata = tablib.Dataset(headers=[ 'sw_name', 'sw_lic_id', 'sw_mnt_id', 'sw_not_use', 
 #                         'sw_version', 'sw_quantity', 'sw_dev_comp', 'sw_lic_price', 'sw_mnt_price', 
 #                         'sw_lic_date', 'sw_mnt_init_date', 'sw_mnt_update_date', 'sw_sup_date', 
-#                         'sw_banker', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
+#                         'sw_in_charge', 'sw_vender_comp', 'sw_vender_rep', 'sw_vender_mai', 'sw_vender_tel', 
 #                         'sw_installed', 'sw_other' ]).load(new_persons.read())
 #         print("=== simple_upload 4 ===")
 #         result = person_resource.import_data(mydata, dry_run=True)
